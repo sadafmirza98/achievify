@@ -1,0 +1,74 @@
+<div *ngIf="viewMode">
+  <ng-container *ngIf="currentGoal.id; else noGoalSelected">
+    <h4>Goal</h4>
+    <div>
+      <label><strong>Title:</strong></label> {{ currentGoal.title }}
+    </div>
+    <div>
+      <label><strong>Description:</strong></label>
+      {{ currentGoal.description }}
+    </div>
+    <div>
+      <label><strong>Status:</strong></label>
+      {{ currentGoal.status ? "Completed" : "Pending" }}
+    </div>
+
+    <a class="badge badge-warning" [routerLink]="'/goals/' + currentGoal.id">
+      Edit
+    </a>
+  </ng-container>
+  <ng-template #noGoalSelected>
+    <p>Please click on a goal...</p>
+  </ng-template>
+</div>
+
+<div *ngIf="!viewMode">
+  <ng-container *ngIf="currentGoal.id; else cannotAccessGoal">
+    <div class="edit-form">
+      <h4>Goal</h4>
+      <form>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            [(ngModel)]="currentGoal.title"
+            name="title"
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            [(ngModel)]="currentGoal.description"
+            name="description"
+          />
+        </div>
+
+        <div class="form-group">
+          <label><strong>Status:</strong></label>
+          {{ currentGoal.status ? "Completed" : "Pending" }}
+        </div>
+
+        <button class="badge badge-primary mr-2" (click)="updateStatus(true)">
+          {{ currentGoal.status ? "Unpublish" : "Publish" }}
+        </button>
+
+        <button class="badge badge-danger mr-2" (click)="deleteGoal()">
+          Delete
+        </button>
+
+        <button type="submit" class="badge badge-success mb-2" (click)="updateGoal()">
+          Update
+        </button>
+        <p>{{ message }}</p>
+      </form>
+    </div>
+  </ng-container>
+  <ng-template #cannotAccessGoal>
+    <p>Cannot access this goal...</p>
+  </ng-template>
+</div>
