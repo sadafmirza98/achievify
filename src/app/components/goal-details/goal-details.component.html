@@ -1,4 +1,4 @@
-<div *ngIf="viewMode">
+<div *ngIf="viewMode && !loader">
   <ng-container *ngIf="currentGoal.id; else noGoalSelected">
     <h2>Mission Details</h2>
     <div>
@@ -29,7 +29,7 @@
   </ng-template>
 </div>
 
-<div *ngIf="!viewMode">
+<div *ngIf="!viewMode && !loader">
   <ng-container *ngIf="currentGoal.id; else cannotAccessGoal">
     <div class="edit-form card">
       <h2>Update Mission</h2>
@@ -85,4 +85,9 @@
   <ng-template #cannotAccessGoal>
     <p>Cannot access this goal...</p>
   </ng-template>
+</div>
+
+<div *ngIf="loader" class="spinner-container">
+  <div class="shuriken"></div>
+  <h2>Loading...</h2>
 </div>

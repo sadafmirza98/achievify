@@ -1,55 +1,61 @@
-<div class="list row card">
-  <div *ngIf="goals && goals.length > 0" class="col-md-8 center-align">
-    <div class="input-group mb-3">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Search by title"
-        [(ngModel)]="title"
-      />
-      <div class="input-group-append">
-        <button class="btn btn-search" type="button" (click)="searchTitle()">
-          Search
-        </button>
-      </div>
-    </div>
-
-    <h2>Missions List</h2>
-    <ul class="list-group">
-      <li
-        class="list-group-item"
-        *ngFor="let goal of goals; let i = index"
-        [class.active]="i === currentIndex"
-        (click)="setActiveGoal(goal, i)"
-      >
-        {{ goal.title }}
-      </li>
-    </ul>
-    <button class="m-3 btn btn-custom" (click)="removeAllGoals()">
-      Remove All
-    </button>
-    <div class="col-md-12">
-      <app-goal-details
-        [viewMode]="true"
-        [currentGoal]="currentGoal"
-      ></app-goal-details>
-    </div>
-  </div>
-  <div *ngIf="goals && goals.length == 0" class="container col-md-12">
-    <div class="sasuke-section">
-      <img class="sasuke" src="../../../assets/no-data.png" />
-    </div>
-    <div class="text-section additional-text">
-      <div class="card-sasuke">
-        <div class="inline-text">
-          <span>No Missions to show</span>
-          <div class="shuriken"></div>
+<div *ngIf="!loader" class="min-height">
+  <div class="list row card">
+    <div *ngIf="goals && goals.length > 0" class="col-md-8 center-align">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by title"
+          [(ngModel)]="title"
+        />
+        <div class="input-group-append">
+          <button class="btn btn-search" type="button" (click)="searchTitle()">
+            Search
+          </button>
         </div>
-        <span class="inline-text">{{ additionalSasukeText }}</span>
-        <button class="m-3 btn btn-custom" (click)="redirectToAddPage()">
-          Add a new Mission
-        </button>
+      </div>
+
+      <h2>Missions List</h2>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let goal of goals; let i = index"
+          [class.active]="i === currentIndex"
+          (click)="setActiveGoal(goal, i)"
+        >
+          {{ goal.title }}
+        </li>
+      </ul>
+      <button class="m-3 btn btn-custom" (click)="removeAllGoals()">
+        Remove All
+      </button>
+      <div class="col-md-12">
+        <app-goal-details
+          [viewMode]="true"
+          [currentGoal]="currentGoal"
+        ></app-goal-details>
+      </div>
+    </div>
+    <div *ngIf="goals && goals.length == 0" class="container col-md-12">
+      <div class="sasuke-section">
+        <img class="sasuke" src="../../../assets/no-data.png" />
+      </div>
+      <div class="text-section additional-text">
+        <div class="card-sasuke">
+          <div class="inline-text">
+            <span>No Missions to show</span>
+            <div class="shuriken"></div>
+          </div>
+          <span class="inline-text">{{ additionalSasukeText }}</span>
+          <button class="m-3 btn btn-custom" (click)="redirectToAddPage()">
+            Add a new Mission
+          </button>
+        </div>
       </div>
     </div>
   </div>
+</div>
+<div *ngIf="loader" class="spinner-container">
+  <div class="shuriken"></div>
+  <h2>Loading...</h2>
 </div>

@@ -9,3 +9,7 @@
   padding: 20px;
   min-height: auto; /* 80vh */
 }
+
+.min-height {
+  min-height: 80vh !important;
+}

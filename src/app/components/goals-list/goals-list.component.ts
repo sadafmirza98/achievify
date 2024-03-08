@@ -13,17 +13,21 @@ export class GoalsListComponent implements OnInit {
   currentGoal: goal = {}; // Initialize as an empty object
   currentIndex = -1;
   title = '';
+  loader = true;
   additionalSasukeText =
     'Seems like there are no missions to show. Time to forge your own path, just like I did with the Akatsuki. Embrace the solitude and unleash your true potential';
   constructor(private goalService: goalService, private router: Router) {}
 
   ngOnInit(): void {
+    this.loader = false;
     this.retrieveGoals();
   }
 
   retrieveGoals(): void {
+    this.loader = true;
     this.goalService.getAll().subscribe({
       next: (data: any) => {
+        this.loader = false;
         if (data) {
           this.goals = Object.keys(data).map((key) => ({
             id: key,
@@ -49,9 +53,11 @@ export class GoalsListComponent implements OnInit {
   }
 
   removeAllGoals(): void {
+    this.loader = true;
     this.goalService.deleteAll().subscribe({
       next: (res) => {
         console.log(res);
+        this.loader = false;
         this.refreshList();
       },
       error: (e) => console.error(e),
@@ -61,7 +67,7 @@ export class GoalsListComponent implements OnInit {
   searchTitle(): void {
     this.currentGoal = {};
     this.currentIndex = -1;
-
+    this.loader = true;
     this.goalService.findByTitle(this.title).subscribe({
       next: (data: goal[]) => {
         this.goals = data;
@@ -69,6 +75,7 @@ export class GoalsListComponent implements OnInit {
       },
       error: (e) => console.error(e),
     });
+    this.loader = false;
   }
 
   redirectToAddPage() {

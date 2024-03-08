@@ -19,6 +19,7 @@ export class GoalDetailsComponent implements OnInit {
   };
 
   message = '';
+  loader = true;
 
   constructor(
     private goalService: goalService,
@@ -27,6 +28,7 @@ export class GoalDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loader = false;
     if (!this.viewMode) {
       this.message = '';
       this.getGoal(this.route.snapshot.params['id']);
@@ -34,11 +36,13 @@ export class GoalDetailsComponent implements OnInit {
   }
 
   getGoal(id: string): void {
+    this.loader = true;
     this.goalService.get(id).subscribe({
       next: (data) => {
         this.currentGoal.id = id;
         this.currentGoal.title = data.title;
         this.currentGoal.description = data.description;
+        this.loader = false;
       },
       error: (e) => console.error(e),
     });
@@ -67,10 +71,11 @@ export class GoalDetailsComponent implements OnInit {
 
   updateGoal(): void {
     this.message = '';
-
+    this.loader = true;
     this.goalService.update(this.currentGoal.id, this.currentGoal).subscribe({
       next: (res) => {
         console.log(res);
+        this.loader = false;
         this.message = res.message
           ? res.message
           : 'This goal was updated successfully!';
@@ -80,9 +85,11 @@ export class GoalDetailsComponent implements OnInit {
   }
 
   deleteGoal(): void {
+    this.loader = true;
     this.goalService.delete(this.currentGoal.id).subscribe({
       next: (res) => {
         console.log(res);
+        this.loader = false;
         this.router.navigate(['/goals']);
       },
       error: (e) => console.error(e),

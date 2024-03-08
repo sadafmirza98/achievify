@@ -29,14 +29,6 @@
   transform: scaleX(1); /* Expand the underline on hover */
 }
 
-.spinner-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: rgb(
-    105,
-    0,
-    0
-  ); /* Set the container height to full viewport height */
+.footer-container {
+  margin-left: 2vw;
 }

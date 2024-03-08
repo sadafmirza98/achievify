@@ -1,5 +1,6 @@
 <div *ngIf="loader" class="spinner-container">
-  <img src="../../../assets/pre.svg" />
+  <div class="shuriken"></div>
+  <h2>Loading...</h2>
 </div>
 <div *ngIf="!loader" class="container-image">
   <nav class="navbar navbar-expand navbar-color">
@@ -17,5 +18,8 @@
 
   <div class="container mt-3">
     <router-outlet></router-outlet>
+  </div>
+  <div class="footer-container">
+    <p>Developed by Sadaf Mirza &copy; 2024. All rights reserved.</p>
   </div>
 </div>

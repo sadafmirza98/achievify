@@ -6,11 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
-  texts = [
-    'Forge your path.',
-    'Embark on your journey.',
-    'Believe in yourself!',
-  ];
+  texts = ['Forge your path.', 'Embark on a quest.', 'Believe in yourself!'];
   currentTextIndex = 0;
   currentIndex = 0;
   index = 0;

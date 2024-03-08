@@ -80,3 +80,28 @@ h6 {
 .btn-mark {
   background: linear-gradient(to right, #ff6600, #ff3300);
 }
+
+.shuriken {
+  width: 70px;
+  height: 70px;
+  margin-left: 10px;
+  background-image: url("./assets/shuriken.png"); /* Replace 'shuriken.png' with your image path */
+  background-size: contain;
+  animation: rotateShuriken 2s linear infinite; /* Rotate animation */
+}
+
+@keyframes rotateShuriken {
+  from {
+    transform: rotate(0deg); /* Initial rotation angle */
+  }
+  to {
+    transform: rotate(360deg); /* Final rotation angle */
+  }
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
