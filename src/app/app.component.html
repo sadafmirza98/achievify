@@ -1,4 +1,7 @@
-<div class="container-image">
+<div *ngIf="loader" class="spinner-container">
+  <img src="../../../assets/pre.svg" />
+</div>
+<div *ngIf="!loader" class="container-image">
   <nav class="navbar navbar-expand navbar-color">
     <img class="logo" src="../assets/logo.png" />
     <a href="#" class="navbar-brand">GoalJutsu: The Way of Shinobi</a>
