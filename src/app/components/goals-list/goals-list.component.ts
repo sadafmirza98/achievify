@@ -18,25 +18,27 @@ export class GoalsListComponent implements OnInit {
   constructor(private goalService: goalService, private router: Router) {}
 
   ngOnInit(): void {
-    this.retrieveGoals(); // Correct the method name
+    this.retrieveGoals();
   }
 
   retrieveGoals(): void {
     this.goalService.getAll().subscribe({
       next: (data: any) => {
-        // Correct the type of data
-        this.goals = Object.keys(data).map((key) => ({
-          id: key,
-          ...data[key],
-        }));
-        console.log(this.goals);
+        if (data) {
+          this.goals = Object.keys(data).map((key) => ({
+            id: key,
+            ...data[key],
+          }));
+        } else {
+          this.goals = [];
+        }
       },
       error: (e) => console.error(e),
     });
   }
 
   refreshList(): void {
-    this.retrieveGoals(); // Correct the method name
+    this.retrieveGoals();
     this.currentGoal = {};
     this.currentIndex = -1;
   }
@@ -62,7 +64,6 @@ export class GoalsListComponent implements OnInit {
 
     this.goalService.findByTitle(this.title).subscribe({
       next: (data: goal[]) => {
-        // Correct the type of data
         this.goals = data;
         console.log(data);
       },

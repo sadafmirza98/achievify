@@ -1,5 +1,5 @@
 <div class="list row card">
-  <div *ngIf="goals.length > 0" class="col-md-8 center-align">
+  <div *ngIf="goals && goals.length > 0" class="col-md-8 center-align">
     <div class="input-group mb-3">
       <input
         type="text"
@@ -35,7 +35,7 @@
       ></app-goal-details>
     </div>
   </div>
-  <div *ngIf="goals.length == 0" class="container col-md-12">
+  <div *ngIf="goals && goals.length == 0" class="container col-md-12">
     <div class="sasuke-section">
       <img class="sasuke" src="../../../assets/no-data.png" />
     </div>
