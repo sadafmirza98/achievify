@@ -1,31 +1,38 @@
 <div *ngIf="viewMode">
   <ng-container *ngIf="currentGoal.id; else noGoalSelected">
-    <h4>Goal</h4>
+    <h2>Mission Details</h2>
     <div>
-      <label><strong>Title:</strong></label> {{ currentGoal.title }}
+      <label
+        ><h5><strong>Title:</strong></h5></label
+      >
+      {{ currentGoal.title }}
     </div>
     <div>
-      <label><strong>Description:</strong></label>
+      <label
+        ><h5><strong>Description:</strong></h5></label
+      >
       {{ currentGoal.description }}
     </div>
     <div>
-      <label><strong>Status:</strong></label>
+      <label
+        ><h5><strong>Status:</strong></h5></label
+      >
       {{ currentGoal.status ? "Completed" : "Pending" }}
     </div>
 
-    <a class="badge badge-warning" [routerLink]="'/goals/' + currentGoal.id">
+    <a class="btn btn-custom" [routerLink]="'/goals/' + currentGoal.id">
       Edit
     </a>
   </ng-container>
   <ng-template #noGoalSelected>
-    <p>Please click on a goal...</p>
+    <h5>Choose a mission from above to view the mission details</h5>
   </ng-template>
 </div>
 
 <div *ngIf="!viewMode">
   <ng-container *ngIf="currentGoal.id; else cannotAccessGoal">
-    <div class="edit-form">
-      <h4>Goal</h4>
+    <div class="edit-form card">
+      <h2>Update Mission</h2>
       <form>
         <div class="form-group">
           <label for="title">Title</label>
@@ -53,15 +60,22 @@
           {{ currentGoal.status ? "Completed" : "Pending" }}
         </div>
 
-        <button class="badge badge-primary mr-2" (click)="updateStatus(true)">
-          {{ currentGoal.status ? "Unpublish" : "Publish" }}
+        <button
+          class="btn btn-custom btn-mark mr-2"
+          (click)="updateStatus(true)"
+        >
+          {{ currentGoal.status ? "Mark as Pending" : "Mark as Completed" }}
         </button>
 
-        <button class="badge badge-danger mr-2" (click)="deleteGoal()">
+        <button class="btn btn-custom btn-remove mr-2" (click)="deleteGoal()">
           Delete
         </button>
 
-        <button type="submit" class="badge badge-success mb-2" (click)="updateGoal()">
+        <button
+          type="submit"
+          class="btn btn-custom mr-2"
+          (click)="updateGoal()"
+        >
           Update
         </button>
         <p>{{ message }}</p>

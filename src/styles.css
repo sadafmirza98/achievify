@@ -1,1 +1,82 @@
-/* You can add global styles to this file, and also import other style files */
+.logo {
+  height: 50px;
+  width: 65px;
+  margin-right: 20px;
+}
+
+.container-image {
+  background-image: url("./assets/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+body {
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  color: bisque;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-shadow: 0px 0px 10px rgba(255, 204, 0, 0.989); /* Glow shadow effect */
+}
+
+#text {
+  overflow: hidden; /* Ensures text doesn't overflow its container */
+  border-right: 0.15em solid orange; /* Cursor effect */
+  white-space: nowrap; /* Prevents line breaks */
+  margin: 0 auto; /* Centers text horizontally */
+  animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+/* Typewriter animation */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Cursor (blinking caret) animation */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
+}
+
+/* Override Bootstrap button class */
+.btn-custom {
+  background: linear-gradient(to right, #ff9900, #ff6600);
+  color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Example shadow */
+
+  /* Add transition for smooth animation */
+  transition: box-shadow 0.3s ease;
+}
+
+.btn-custom:hover {
+  background: linear-gradient(to right, #ff9225, #d04905);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.61); /* Example shadow */
+  color: #ffffff;
+}
+
+.btn-remove {
+  background: linear-gradient(to right, #ff3300, #cc0000);
+}
+
+.btn-mark {
+  background: linear-gradient(to right, #ff6600, #ff3300);
+}

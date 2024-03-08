@@ -1,5 +1,6 @@
-<div class="submit-form">
+<div class="submit-form card">
   <div *ngIf="!submitted">
+    <h2>Mission Details</h2>
     <div class="form-group">
       <label for="title">Title</label>
       <input
@@ -23,10 +24,10 @@
       />
     </div>
 
-    <button (click)="saveGoal()" class="btn btn-success">Submit</button>
+    <button (click)="saveGoal()" class="btn btn-custom">Submit</button>
   </div>
   <div *ngIf="submitted">
-    <h4>Goal was submitted successfully!</h4>
-    <button class="btn btn-success" (click)="newTutorial()">Add a new goal</button>
+    <h4>Mission was submitted successfully!</h4>
+    <button class="btn btn-custom" (click)="newTutorial()">Go back</button>
   </div>
 </div>

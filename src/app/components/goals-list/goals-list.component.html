@@ -1,5 +1,5 @@
-<div class="list row">
-  <div class="col-md-8">
+<div class="list row card">
+  <div *ngIf="goals.length > 0" class="col-md-8 center-align">
     <div class="input-group mb-3">
       <input
         type="text"
@@ -8,18 +8,13 @@
         [(ngModel)]="title"
       />
       <div class="input-group-append">
-        <button
-          class="btn btn-outline-secondary"
-          type="button"
-          (click)="searchTitle()"
-        >
+        <button class="btn btn-search" type="button" (click)="searchTitle()">
           Search
         </button>
       </div>
     </div>
-  </div>
-  <div class="col-md-6">
-    <h4>Goals List</h4>
+
+    <h2>Missions List</h2>
     <ul class="list-group">
       <li
         class="list-group-item"
@@ -30,15 +25,31 @@
         {{ goal.title }}
       </li>
     </ul>
-
-    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllGoals()">
+    <button class="m-3 btn btn-custom" (click)="removeAllGoals()">
       Remove All
     </button>
+    <div class="col-md-12">
+      <app-goal-details
+        [viewMode]="true"
+        [currentGoal]="currentGoal"
+      ></app-goal-details>
+    </div>
   </div>
-  <div class="col-md-6">
-    <app-goal-details
-      [viewMode]="true"
-      [currentGoal]="currentGoal"
-    ></app-goal-details>
+  <div *ngIf="goals.length == 0" class="container col-md-12">
+    <div class="sasuke-section">
+      <img class="sasuke" src="../../../assets/no-data.png" />
+    </div>
+    <div class="text-section additional-text">
+      <div class="card-sasuke">
+        <div class="inline-text">
+          <span>No Missions to show</span>
+          <div class="shuriken"></div>
+        </div>
+        <span class="inline-text">{{ additionalSasukeText }}</span>
+        <button class="m-3 btn btn-custom" (click)="redirectToAddPage()">
+          Add a new Mission
+        </button>
+      </div>
+    </div>
   </div>
 </div>

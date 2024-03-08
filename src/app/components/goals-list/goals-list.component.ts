@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { goal } from '../../models/goal.model'; // Correct the import statement
 import { goalService } from '../../services/goal.service'; // Correct the import statement
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-goals-list',
@@ -12,8 +13,9 @@ export class GoalsListComponent implements OnInit {
   currentGoal: goal = {}; // Initialize as an empty object
   currentIndex = -1;
   title = '';
-
-  constructor(private goalService: goalService) {}
+  additionalSasukeText =
+    'Seems like there are no missions to show. Time to forge your own path, just like I did with the Akatsuki. Embrace the solitude and unleash your true potential';
+  constructor(private goalService: goalService, private router: Router) {}
 
   ngOnInit(): void {
     this.retrieveGoals(); // Correct the method name
@@ -23,16 +25,16 @@ export class GoalsListComponent implements OnInit {
     this.goalService.getAll().subscribe({
       next: (data: any) => {
         // Correct the type of data
-        this.goals = Object.keys(data).map(key => ({
+        this.goals = Object.keys(data).map((key) => ({
           id: key,
-          ...data[key]
+          ...data[key],
         }));
         console.log(this.goals);
       },
-      error: (e) => console.error(e)
+      error: (e) => console.error(e),
     });
   }
-  
+
   refreshList(): void {
     this.retrieveGoals(); // Correct the method name
     this.currentGoal = {};
@@ -50,7 +52,7 @@ export class GoalsListComponent implements OnInit {
         console.log(res);
         this.refreshList();
       },
-      error: (e) => console.error(e)
+      error: (e) => console.error(e),
     });
   }
 
@@ -59,11 +61,16 @@ export class GoalsListComponent implements OnInit {
     this.currentIndex = -1;
 
     this.goalService.findByTitle(this.title).subscribe({
-      next: (data: goal[]) => { // Correct the type of data
+      next: (data: goal[]) => {
+        // Correct the type of data
         this.goals = data;
         console.log(data);
       },
-      error: (e) => console.error(e)
+      error: (e) => console.error(e),
     });
+  }
+
+  redirectToAddPage() {
+    this.router.navigateByUrl('/add');
   }
 }

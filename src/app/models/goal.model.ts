@@ -1,5 +1,5 @@
 export class goal {
-  id?: any;
+  id?: string;
   title?: string;
   description?: string;
   status?: boolean;

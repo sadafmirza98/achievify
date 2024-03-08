@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { AddGoalComponent } from './components/add-goal/add-goal.component';
 import { GoalDetailsComponent } from './components/goal-details/goal-details.component';
 import { GoalsListComponent } from './components/goals-list/goals-list.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddGoalComponent,
     GoalDetailsComponent,
-    GoalsListComponent
+    GoalsListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

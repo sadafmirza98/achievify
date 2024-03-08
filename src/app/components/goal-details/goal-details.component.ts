@@ -12,6 +12,7 @@ export class GoalDetailsComponent implements OnInit {
   @Input() viewMode = false;
 
   @Input() currentGoal: goal = {
+    id: '',
     title: '',
     description: '',
     status: false,
@@ -35,10 +36,11 @@ export class GoalDetailsComponent implements OnInit {
   getGoal(id: string): void {
     this.goalService.get(id).subscribe({
       next: (data) => {
-        this.currentGoal = data;
-        console.log(data);
+        this.currentGoal.id = id;
+        this.currentGoal.title = data.title;
+        this.currentGoal.description = data.description;
       },
-      error: (e) => console.error(e)
+      error: (e) => console.error(e),
     });
   }
 
@@ -46,7 +48,7 @@ export class GoalDetailsComponent implements OnInit {
     const data = {
       title: this.currentGoal.title,
       description: this.currentGoal.description,
-      status: status
+      status: status,
     };
 
     this.message = '';
@@ -59,24 +61,22 @@ export class GoalDetailsComponent implements OnInit {
           ? res.message
           : 'The status was updated successfully!';
       },
-      error: (e) => console.error(e)
+      error: (e) => console.error(e),
     });
   }
 
   updateGoal(): void {
     this.message = '';
 
-    this.goalService
-      .update(this.currentGoal.id, this.currentGoal)
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this.message = res.message
-            ? res.message
-            : 'This goal was updated successfully!';
-        },
-        error: (e) => console.error(e)
-      });
+    this.goalService.update(this.currentGoal.id, this.currentGoal).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.message = res.message
+          ? res.message
+          : 'This goal was updated successfully!';
+      },
+      error: (e) => console.error(e),
+    });
   }
 
   deleteGoal(): void {
@@ -85,7 +85,7 @@ export class GoalDetailsComponent implements OnInit {
         console.log(res);
         this.router.navigate(['/goals']);
       },
-      error: (e) => console.error(e)
+      error: (e) => console.error(e),
     });
   }
 }
