@@ -105,3 +105,31 @@ h6 {
   align-items: center;
   height: 80vh;
 }
+
+/* For screens smaller than 768px (typical mobile screens) */
+@media screen and (max-width: 767px) {
+  .logo {
+    height: 30px; /* Adjust as needed for smaller screens */
+    width: auto;
+    margin-right: 10px; /* Adjust margin based on your design */
+  }
+
+  .container-image {
+    min-width: 767px;
+    min-height: 767px;
+  }
+
+  body {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+
+  .btn-custom {
+    width: 100%; /* Make button width 100% for smaller screens */
+    margin-bottom: 10px; /* Add spacing between buttons */
+  }
+
+  .shuriken {
+    width: 45px; /* Adjust spinner size for smaller screens */
+    height: 37px;
+  }
+}
