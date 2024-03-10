@@ -129,7 +129,6 @@ h6 {
   }
 
   .shuriken {
-    width: 45px; /* Adjust spinner size for smaller screens */
-    height: 37px;
+    height: 40px;
   }
 }
