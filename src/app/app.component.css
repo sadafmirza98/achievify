@@ -32,3 +32,40 @@
 .footer-container {
   margin-left: 2vw;
 }
+
+/* Example CSS for the profile icon */
+.navbar-brand {
+  color: bisque;
+  font-size: 20px;
+  text-decoration: none;
+  position: relative;
+  margin: 0px 20px;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand:hover {
+  color: bisque;
+  text-decoration: none;
+}
+
+.dropdown-menu {
+  background-color: rgba(6, 0, 0, 0.8);
+}
+
+.dropdown-menu .dropdown-item {
+  color: bisque;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(6, 0, 0, 0.6);
+}
+
+.fas.fa-user-circle {
+  font-size: 30px;
+  color: bisque;
+  margin-right: 10px;
+}

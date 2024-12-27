@@ -3,10 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { goal } from '../models/goal.model';
 
-//const baseUrl = 'http://localhost:8080/api/Goals';
 const baseUrl =
-  'https://achievify-d7672-default-rtdb.asia-southeast1.firebasedatabase.app/goals';
-
+  'https://goaljutsu-default-rtdb.asia-southeast1.firebasedatabase.app/users';
 @Injectable({
   providedIn: 'root',
 })

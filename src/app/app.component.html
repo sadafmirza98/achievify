@@ -2,16 +2,39 @@
   <div class="shuriken"></div>
   <h2>Loading...</h2>
 </div>
+
 <div *ngIf="!loader" class="container-image">
   <nav class="navbar navbar-expand navbar-color">
     <img class="logo" src="../assets/logo.png" />
     <a href="#" class="navbar-brand">GoalJutsu: The Way of Shinobi</a>
     <div class="navbar-nav mr-auto">
-      <li class="nav-item">
+      <!-- Display 'Missions' and 'Add a new Mission' only if logged in -->
+      <li class="nav-item" *ngIf="isLoggedIn">
         <a routerLink="goals" class="navbar-brand">Missions</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isLoggedIn">
         <a routerLink="add" class="navbar-brand">Add a new Mission</a>
+      </li>
+
+      <!-- Display 'Login' if not logged in -->
+      <li class="nav-item" *ngIf="!isLoggedIn">
+        <a routerLink="login" class="navbar-brand">Login</a>
+      </li>
+
+      <!-- Display Profile and Logout if logged in -->
+      <li class="nav-item dropdown" *ngIf="isLoggedIn">
+        <a
+          class="navbar-brand"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+        >
+          Profile
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#" (click)="logout()">Logout</a>
+        </div>
       </li>
     </div>
   </nav>
@@ -19,6 +42,7 @@
   <div class="container mt-3">
     <router-outlet></router-outlet>
   </div>
+
   <div class="footer-container">
     <p>Developed by Sadaf Mirza &copy; 2024. All rights reserved.</p>
   </div>

@@ -9,6 +9,8 @@ import { AddGoalComponent } from './components/add-goal/add-goal.component';
 import { GoalDetailsComponent } from './components/goal-details/goal-details.component';
 import { GoalsListComponent } from './components/goals-list/goals-list.component';
 import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/authentication/login/login.component';
+import { SignupComponent } from './components/authentication/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { HomeComponent } from './components/home/home.component';
     AddGoalComponent,
     GoalDetailsComponent,
     GoalsListComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
