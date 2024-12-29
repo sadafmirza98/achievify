@@ -84,7 +84,8 @@ export class goalService {
     return new Observable((observer) => {
       this.getAll().subscribe({
         next: (goals: goal[]) => {
-          const filteredGoals = goals.filter((goal) =>
+          let goalsArray = Object.values(goals);
+          const filteredGoals = goalsArray.filter((goal) =>
             goal.title?.toLowerCase().includes(title.toLowerCase())
           );
           observer.next(filteredGoals);

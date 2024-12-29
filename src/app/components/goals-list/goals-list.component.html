@@ -1,6 +1,6 @@
 <div *ngIf="!loader" class="min-height">
   <div class="list row card">
-    <div *ngIf="goals && goals.length > 0" class="col-md-8 center-align">
+    <div *ngIf="goals && missionList.length > 0" class="col-md-8 center-align">
       <div class="input-group mb-3">
         <input
           type="text"
@@ -16,7 +16,7 @@
       </div>
 
       <h2>Missions List</h2>
-      <ul class="list-group">
+      <ul class="list-group" *ngIf="goals.length > 0">
         <li
           class="list-group-item"
           *ngFor="let goal of goals; let i = index"
@@ -26,7 +26,16 @@
           {{ goal.title }}
         </li>
       </ul>
-      <button class="m-3 btn btn-custom" (click)="removeAllGoals()">
+      <ul class="list-group mb-3" *ngIf="goals.length === 0">
+        <li class="list-group-item no-pointer">
+          No Missions matched your search criteria
+        </li>
+      </ul>
+      <button
+        class="mt-3 mb-3 btn btn-custom"
+        *ngIf="goals.length > 0"
+        (click)="removeAllGoals()"
+      >
         Remove All
       </button>
       <div class="col-md-12">
@@ -36,7 +45,7 @@
         ></app-goal-details>
       </div>
     </div>
-    <div *ngIf="goals && goals.length == 0" class="container col-md-12">
+    <div *ngIf="goals && missionList.length == 0" class="container col-md-12">
       <div class="sasuke-section">
         <img class="sasuke" src="../../../assets/no-data.png" />
       </div>
@@ -56,6 +65,6 @@
   </div>
 </div>
 <div *ngIf="loader" class="spinner-container">
-  <div class="shuriken"></div>
+  <div class="shuriken mr-2"></div>
   <h2>Loading...</h2>
 </div>

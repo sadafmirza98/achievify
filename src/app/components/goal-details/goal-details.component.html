@@ -67,7 +67,10 @@
           {{ currentGoal.status ? "Mark as Pending" : "Mark as Completed" }}
         </button>
 
-        <button class="btn btn-custom btn-remove mr-2" (click)="deleteGoal()">
+        <button
+          class="btn btn-custom btn-remove mr-2 mt-2 mb-2"
+          (click)="deleteGoal()"
+        >
           Delete
         </button>
 
@@ -88,6 +91,6 @@
 </div>
 
 <div *ngIf="loader" class="spinner-container">
-  <div class="shuriken"></div>
+  <div class="shuriken mr-2"></div>
   <h2>Loading...</h2>
 </div>

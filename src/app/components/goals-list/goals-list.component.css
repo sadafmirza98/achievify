@@ -5,6 +5,7 @@
 .list-group-item {
   color: black;
   background-color: bisque;
+  cursor: pointer;
 }
 
 .list-group-item.active {

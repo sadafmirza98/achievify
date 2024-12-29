@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class GoalsListComponent implements OnInit {
   goals: goal[] = [];
+  missionList: goal[] = [];
   currentGoal: goal = {}; // Initialize as an empty object
   currentIndex = -1;
   title = '';
@@ -33,8 +34,10 @@ export class GoalsListComponent implements OnInit {
             id: key,
             ...data[key],
           }));
+          this.missionList = this.goals;
         } else {
           this.goals = [];
+          this.missionList = [];
         }
       },
       error: (e) => console.error(e),
@@ -71,7 +74,6 @@ export class GoalsListComponent implements OnInit {
     this.goalService.findByTitle(this.title).subscribe({
       next: (data: goal[]) => {
         this.goals = data;
-        console.log(data);
       },
       error: (e) => console.error(e),
     });
