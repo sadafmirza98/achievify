@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private dbUrl =
     'https://goaljutsu-default-rtdb.asia-southeast1.firebasedatabase.app/';
+  private authState = new BehaviorSubject<any>(this.getUserData());
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -42,56 +43,57 @@ export class AuthService {
     });
   }
 
-  // Login Method - Check if the user exists and authenticate
+  // Login Method - Authenticate user and update auth state
   login(email: string, password: string): Observable<any> {
     return new Observable((observer) => {
       this.http.get(`${this.dbUrl}users.json`).subscribe(
         (users: any) => {
-          let userFound = false;
-          let userValid = false;
+          let loggedInUser: any = null;
 
-          // Check for user and password match
+          // Match user credentials
           for (let key in users) {
-            if (users[key].email === email) {
-              userFound = true;
-              if (users[key].password === password) {
-                userValid = true;
-                // Store the user data and missions if valid
-                localStorage.setItem('user', JSON.stringify(users[key]));
-                break;
-              }
+            if (
+              users[key].email === email &&
+              users[key].password === password
+            ) {
+              loggedInUser = { ...users[key], id: key };
+              break;
             }
           }
 
-          if (userFound && userValid) {
+          if (loggedInUser) {
+            localStorage.setItem('user', JSON.stringify(loggedInUser)); // Save user to localStorage
+            this.authState.next(loggedInUser); // Update auth state
             observer.next({ message: 'Login successful' });
             observer.complete();
-          } else if (!userFound) {
-            observer.error('Email not found');
-          } else if (!userValid) {
-            observer.error('Incorrect password');
+          } else {
+            observer.error('Invalid email or password');
           }
         },
         (error) => {
-          observer.error('Error fetching users');
+          observer.error('Error connecting to server');
         }
       );
     });
   }
 
-  // Logout Method - Clear user session
+  // Logout Method - Clear stored user and update auth state
   logout(): void {
-    localStorage.removeItem('user');
-    this.router.navigate(['/login']);
+    localStorage.removeItem('user'); // Clear stored user
+    this.authState.next(null); // Update auth state
   }
 
-  // Check if user is authenticated (check for user in localStorage)
+  // Auth State Observable
+  getAuthState(): Observable<any> {
+    return this.authState.asObservable();
+  }
+
   isAuthenticated(): boolean {
-    return !!localStorage.getItem('user'); // Return true if user is found in localStorage
+    return !!localStorage.getItem('user'); // Check if user exists in localStorage
   }
 
-  // Get the logged-in user's data from localStorage
   getUserData(): any {
-    return JSON.parse(localStorage.getItem('user') || '{}');
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user) : null;
   }
 }

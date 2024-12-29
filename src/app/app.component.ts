@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './components/authentication/auth.service'; // Import AuthService
+import { AuthService } from './components/authentication/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,25 +10,22 @@ import { AuthService } from './components/authentication/auth.service'; // Impor
 export class AppComponent implements OnInit {
   loader: boolean = false;
   isLoggedIn: boolean = false;
-  userData: any = null; // Store logged-in user data
+  userData: any = null;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    // Check if user is authenticated when the app starts
-    this.isLoggedIn = this.authService.isAuthenticated();
-
-    // If the user is logged in, retrieve user data
-    if (this.isLoggedIn) {
-      this.userData = this.authService.getUserData();
-    }
-
-    this.loader = false; // Hide loader after authentication check
+    // Subscribe to auth state changes
+    this.authService.getAuthState().subscribe((user) => {
+      this.isLoggedIn = !!user; // Update login state
+      this.userData = user; // Update user data
+      this.loader = false; // Ensure loader is hidden
+    });
   }
 
+  // Triggered when the user logs out
   logout(): void {
-    this.authService.logout(); // Logout the user via AuthService
-    this.isLoggedIn = false; // Update the login state in the UI
-    this.userData = null; // Clear the user data
+    this.authService.logout();
+    this.router.navigate(['/login']); // Redirect to login
   }
 }
