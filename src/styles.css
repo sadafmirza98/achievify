@@ -92,9 +92,10 @@ h6 {
   width: 70px;
   height: 70px;
   margin-left: 10px;
-  background-image: url("./assets/shuriken.png"); /* Replace 'shuriken.png' with your image path */
+  background-image: url("./assets/shuriken.png");
   background-size: contain;
-  animation: rotateShuriken 2s linear infinite; /* Rotate animation */
+  background-repeat: no-repeat;
+  animation: rotateShuriken 2s linear infinite;
 }
 
 @keyframes rotateShuriken {
