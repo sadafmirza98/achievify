@@ -1,16 +1,19 @@
+/* Navbar brand styles */
 .navbar-brand {
   color: bisque;
   font-size: 20px; /* Increase font size */
   text-decoration: none;
   position: relative;
-  margin: 0px 20px 0px 20px;
+  margin: 0px 20px;
 }
 
+/* Navbar background */
 .navbar-color {
   background-color: rgba(6, 0, 0, 0.285);
   min-height: 85px;
 }
 
+/* Underline animation for navbar brand */
 .navbar-brand::after {
   content: "";
   position: absolute;
@@ -29,29 +32,20 @@
   transform: scaleX(1); /* Expand the underline on hover */
 }
 
-.footer-container {
-  margin-left: 2vw;
-}
-
-/* Example CSS for the profile icon */
-.navbar-brand {
-  color: bisque;
-  font-size: 20px;
-  text-decoration: none;
-  position: relative;
-  margin: 0px 20px;
-}
-
+/* Navbar alignment for mobile */
 .navbar-nav {
   display: flex;
   align-items: center;
 }
 
-.navbar-brand:hover {
+/* Profile Icon */
+.fas.fa-user-circle {
+  font-size: 30px;
   color: bisque;
-  text-decoration: none;
+  margin-right: 10px;
 }
 
+/* Dropdown Menu Styling */
 .dropdown-menu {
   background-color: rgba(6, 0, 0, 0.8);
 }
@@ -64,8 +58,77 @@
   background-color: rgba(6, 0, 0, 0.6);
 }
 
-.fas.fa-user-circle {
-  font-size: 30px;
-  color: bisque;
-  margin-right: 10px;
+/* Footer styling */
+.footer-container {
+  margin-left: 2vw;
+}
+
+/* Mobile responsiveness for Navbar */
+@media (max-width: 767px) {
+  .navbar-brand {
+    font-size: 18px; /* Reduce font size on smaller screens */
+    margin: 0 10px; /* Adjust margin for smaller screens */
+  }
+
+  .navbar-nav {
+    flex-direction: column; /* Stack navbar items vertically */
+    text-align: center; /* Center-align the items */
+    width: 100%; /* Take full width */
+    padding: 10px 0; /* Add padding for better spacing */
+  }
+
+  .dropdown-menu {
+    position: absolute; /* Make the dropdown menu appear below the items */
+    width: 100%; /* Make it span the entire screen width */
+  }
+
+  .navbar-color {
+    min-height: 60px; /* Reduce navbar height on smaller screens */
+  }
+
+  .fas.fa-user-circle {
+    font-size: 25px; /* Reduce icon size */
+    margin-right: 5px; /* Adjust margin */
+  }
+}
+
+/* Tablet responsiveness (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .navbar-brand {
+    font-size: 19px; /* Slightly smaller font size */
+  }
+
+  .navbar-nav {
+    justify-content: center; /* Center align navbar items */
+    text-align: center;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    width: 100%;
+  }
+
+  .navbar-color {
+    min-height: 75px; /* Adjust navbar height for tablets */
+  }
+}
+
+/* Large screen (desktop) styles */
+@media (min-width: 1025px) {
+  .navbar-brand {
+    font-size: 20px; /* Default font size for large screens */
+    margin: 0 20px;
+  }
+
+  .navbar-nav {
+    justify-content: flex-start; /* Align items to the left */
+  }
+
+  .dropdown-menu {
+    position: absolute;
+  }
+
+  .navbar-color {
+    min-height: 85px; /* Default navbar height */
+  }
 }
