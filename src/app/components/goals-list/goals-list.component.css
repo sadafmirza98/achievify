@@ -21,7 +21,7 @@
   min-height: auto; /* 80vh */
   align-items: center;
   max-width: 50%;
-  margin: 0 auto;
+  margin: 10vh auto;
 }
 
 .btn-search {
