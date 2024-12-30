@@ -1,6 +1,6 @@
 <div *ngIf="!loader" class="min-height">
-  <div class="list row card">
-    <div *ngIf="goals && missionList.length > 0" class="col-md-12">
+  <div *ngIf="goals && missionList.length > 0" class="list row card">
+    <div class="col-md-12">
       <div class="input-group mb-3">
         <input
           type="text"
@@ -49,21 +49,22 @@
         ></app-goal-details>
       </div>
     </div>
-    <div *ngIf="goals && missionList.length == 0" class="container col-md-12">
-      <div class="sasuke-section">
-        <img class="sasuke" src="../../../assets/no-data.png" />
-      </div>
-      <div class="text-section additional-text">
-        <div class="card-sasuke">
-          <div class="inline-text">
-            <span>No Missions to show</span>
-            <div class="shuriken"></div>
-          </div>
-          <span class="inline-text">{{ additionalSasukeText }}</span>
-          <button class="m-3 btn btn-custom" (click)="redirectToAddPage()">
-            Add a new Mission
-          </button>
+  </div>
+
+  <div *ngIf="goals && missionList.length == 0" class="container col-md-12">
+    <div class="sasuke-section">
+      <img class="sasuke" src="../../../assets/no-data.png" />
+    </div>
+    <div class="text-section additional-text">
+      <div class="card-sasuke">
+        <div class="inline-text">
+          <span>No Missions to show</span>
+          <div class="shuriken"></div>
         </div>
+        <span class="inline-text">{{ additionalSasukeText }}</span>
+        <button class="m-3 btn btn-custom" (click)="redirectToAddPage()">
+          Add a new Mission
+        </button>
       </div>
     </div>
   </div>
